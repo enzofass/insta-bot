@@ -1,7 +1,8 @@
 require('dotenv').config();
 const ig = require('./instagram');
 
-(async () => {
+const run = async () => {
+	console.log('Function called');
 	await ig.initialize();
 
 	await ig.login(process.env.INSTA_USER, process.env.INSTA_PASS);
@@ -10,7 +11,19 @@ const ig = require('./instagram');
 
 	// await ig.searchTags('beefjerky');
 
-	await ig.likePosts(['jerky', 'biltong']);
+	await ig.likePosts(['beefjerky', 'jerky', 'biltong']);
 
-	debugger;
-})();
+	await ig.closeBrowser();
+
+	await delay(6);
+	run();
+};
+
+// return await for better async stack trace support in case of errors.
+const delay = async hrs =>
+	await new Promise(resolve => {
+		let hrs2ms = hrs * 3600000;
+		setTimeout(resolve, hrs2ms);
+	});
+
+run();

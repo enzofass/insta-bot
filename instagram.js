@@ -8,7 +8,9 @@ const instagram = {
 	page: null,
 
 	initialize: async () => {
+		console.log('init');
 		instagram.browser = await puppeteer.launch({
+			args: ['--no-sandbox', '--disable-setuid-sandbox'],
 			headless: false
 		});
 
@@ -85,7 +87,7 @@ const instagram = {
 				'article > div:nth-child(3) img[decoding="auto"]'
 			);
 
-			for (let i = 0; i <= 12; i++) {
+			for (let i = 0; i < 3; i++) {
 				let post = posts[i];
 
 				/* Click on the post */
@@ -111,8 +113,11 @@ const instagram = {
 			}
 			await instagram.page.waitFor(5000);
 		}
-
-		debugger;
+	},
+	closeBrowser: async () => {
+		await instagram.page.waitFor(5000);
+		console.log('closing browser');
+		await instagram.browser.close();
 	}
 };
 
