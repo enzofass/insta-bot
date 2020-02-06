@@ -2,6 +2,7 @@ const puppeteer = require('puppeteer');
 
 const BASE_URL = 'http://instagram.com/';
 const TAG_URL = tag => `https://www.instagram.com/explore/tags/${tag}/`;
+let sumPostsLiked = 0;
 
 const instagram = {
 	browser: null,
@@ -102,6 +103,8 @@ const instagram = {
 
 				if (isLikeable) {
 					await instagram.page.click('svg[aria-label="Like"]');
+					sumPostsLiked++;
+					console.log('Post Liked!');
 				}
 				await instagram.page.waitFor(3000);
 				/* Close modal */
