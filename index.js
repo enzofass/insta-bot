@@ -1,4 +1,4 @@
-require('dotenv').config();
+// require('dotenv').config();
 const ig = require('./instagram');
 
 const run = async () => {
