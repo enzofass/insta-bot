@@ -105,8 +105,8 @@ const instagram = {
 				}
 				await instagram.page.waitFor(3000);
 				/* Close modal */
-				let closeModalBtn = await instagram.page.$x(
-					'//button[contains(text(), "Close")]'
+				let closeModalBtn = await instagram.page.$$(
+					'button > svg[aria-label="Close"]'
 				);
 				await closeModalBtn[0].click();
 				await instagram.page.waitFor(1000);
