@@ -2,7 +2,6 @@ const puppeteer = require('puppeteer');
 
 const BASE_URL = 'http://instagram.com/';
 const TAG_URL = tag => `https://www.instagram.com/explore/tags/${tag}/`;
-let sumPostsLiked = 0;
 
 const instagram = {
 	browser: null,
@@ -62,21 +61,6 @@ const instagram = {
 		await newPostBtn[0].click();
 		await instagram.page.waitFor(10000);
 	},
-	/* Fill in search field */
-	// searchTags: async searchText => {
-	// 	await instagram.page.type('input[placeholder="Search"]', searchText, {
-	// 		delay: 50
-	// 	});
-
-	// 	await instagram.page
-	// 		.waitForXPath(`//span[contains(text(), "#${searchText}")]/ancestor::a`, {
-	// 			visible: true
-	// 		})
-	// 		.then(() => {
-	// 			instagram.page.keyboard.press(String.fromCharCode(13));
-	// 		});
-	// 	await instagram.page.waitForNavigation({ waitUntil: 'networkidle2' });
-	// },
 	/* Like images on page */
 	likePosts: async (tags = []) => {
 		for (let tag of tags) {
@@ -103,7 +87,6 @@ const instagram = {
 
 				if (isLikeable) {
 					await instagram.page.click('svg[aria-label="Like"]');
-					sumPostsLiked++;
 					console.log('Post Liked!');
 				}
 				await instagram.page.waitFor(3000);
