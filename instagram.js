@@ -76,7 +76,7 @@ const instagram = {
 				'article > div:nth-child(3) img[decoding="auto"]'
 			);
 
-			for (let i = 0; i < 3; i++) {
+			for (let i = 0; i < 5; i++) {
 				let post = posts[i];
 
 				/* Click on the post */

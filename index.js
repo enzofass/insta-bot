@@ -9,17 +9,15 @@ const run = async () => {
 
 	await ig.showPosts();
 
-	// await ig.searchTags('beefjerky');
-
 	await ig.likePosts(['beefjerky', 'jerky', 'biltong']);
 
 	await ig.closeBrowser();
 
-	await delay(6);
+	await delay(2);
 	run();
 };
 
-// return await for better async stack trace support in case of errors.
+// delay recursion
 const delay = async hrs =>
 	await new Promise(resolve => {
 		let hrs2ms = hrs * 3600000;
